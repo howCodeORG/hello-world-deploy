@@ -32,7 +32,6 @@ metadata:
   name: python-svc
   namespace: default
 spec:
-  type: LoadBalancer
   ports:
     - name: http
       protocol: TCP
