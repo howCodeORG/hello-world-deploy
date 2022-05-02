@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,7 +23,7 @@ jobs:
       run: doctl registry login --expiry-seconds 1200
 
     - name: Build container image
-      run: docker build -t ${{ secrets.REGISTRY_NAME }}/howcode/python:$(echo $GITHUB_SHA | head -c7) -f build/docker/Dockerfile build
+      run: docker build -t ${{ secrets.REGISTRY_NAME }}/howcode/python:$(echo $GITHUB_SHA | head -c7) -f Dockerfile .
 
     - name: Push image to DigitalOcean Container Registry
       run: docker push ${{ secrets.REGISTRY_NAME }}/howcode/python:$(echo $GITHUB_SHA | head -c7)
